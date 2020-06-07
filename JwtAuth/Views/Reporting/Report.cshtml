@@ -1,0 +1,50 @@
+﻿@*@model List<Common.Model.Employee>*@
+@using Common.Model;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    List<Employee> employees = new List<Employee>();
+    for (int i = 1; i <= 15; i++)
+    {
+        Employee employee = new Employee
+        {
+            Id = i,
+            Name = $"Korim {i.ToString()}",
+            Email = $"{i.ToString()}_email@gmail.com",
+            Address = $"{i.ToString()}, Dhaka, bangladesh",
+            Mobile = $"0182066723{i.ToString()}",
+            DateOfBirth = DateTime.Today.AddDays(i),
+            JoiningDate = DateTime.Today.AddDays(i),
+        };
+        employees.Add(employee);
+    }
+}
+<h2 class="text-center">Employee Report</h2>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr style="background-color:#234893; color:#fff">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Birth Date</th>
+            <th>Joining Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in employees)
+        {
+            <tr>
+                <th>@item.Name</th>
+                <th>@item.Email</th>
+                <th>@item.Address</th>
+                <th>@item.Mobile</th>
+                <th>@item.DateOfBirth.ToString("dd/MM/yyyy")</th>
+                <th>@item.JoiningDate.ToString("dd/MM/yyyy")</th>
+            </tr>
+        }
+    </tbody>
+</table>
